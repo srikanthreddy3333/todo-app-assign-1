@@ -225,19 +225,28 @@ app.get("/todos/:todoId/", async (request, response) => {
 //api 3 list of all todos with a specific due date in the query parameter
 app.get("/agenda/", async (request, response) => {
   const { date } = request.query;
-
-  if (isMatch(date, "yyyy-MM-dd")) {
-    const newDate = format(new Date(date), "yyyy-MM-dd");
-
-    const requestQuery = `SELECT * FROM todo WHERE due_date='${newDate}';`;
-    const dateResponse = await database.all(requestQuery);
-
-    response.send(
-      dateResponse.map((eachItem) => convertTodoObToResponseOb(eachItem))
-    );
-  } else {
+  if (date === undefined) {
     response.status(400);
     response.send("Invalid Due Date");
+  } else {
+    const isDateValid = isValid(new Date(date));
+    if (isDateValid) {
+      const formattedDate = format(new Date(date), "yyyy-MM-dd");
+
+      const getQuery = `
+        SELECT 
+          id,todo,priority,status,category,due_date AS dueDate 
+        FROM 
+          todo
+        WHERE due_date='${formattedDate}';`;
+
+      const todos = await database.all(getQuery);
+      //   response.send(todos);
+      response.send(todos.map((each) => convertTodoObToResponseOb(each)));
+    } else {
+      response.status(400);
+      response.send("Invalid Due Date");
+    }
   }
 });
 
