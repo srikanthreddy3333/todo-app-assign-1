@@ -1,0 +1,117 @@
+###
+//API 1
+//get all todos
+GET http://localhost:3000/todos/
+
+###
+//scenario 1 list of all todos whose status is 'TO DO'
+GET http://localhost:3000/todos/?status=TO%20DO
+
+###
+//scenario 2 list of all todos whose priority is 'HIGH'
+GET http://localhost:3000/todos/?priority=HIGH
+
+###
+//scenario 3 list of all todos whose priority is 'HIGH' and status is 'IN PROGRESS'
+GET http://localhost:3000/todos/?priority=HIGH&status=IN%20PROGRESS
+
+###
+//scenario 4 list of all todos whose todo contains 'Buy' text
+GET http://localhost:3000/todos/?search_q=Buy
+
+###
+//scenario 5 list of all todos whose category is 'WORK' and status is 'DONE'
+GET http://localhost:3000/todos/?category=WORK&status=DONE
+
+###
+//scenario 6 list of all todos whose category is 'HOME'
+GET http://localhost:3000/todos/?category=HOME
+
+###
+//scenario 7 list of all todos whose category is 'LEARNING' and priority is 'HIGH'
+GET http://localhost:3000/todos/?category=LEARNING&priority=HIGH
+
+###
+//API 2 specific todo based on the todo ID
+GET http://localhost:3000/todos/6
+
+###
+//API 3  list of all todos with a specific due date in the query parameter 
+GET http://localhost:3000/agenda/?date=2021-12-12
+
+###
+//API 4 Create a todo in the todo table
+POST http://localhost:3000/todos/
+Content-Type: application/json
+
+{
+ "id": 6,
+ "todo": "Finalize event theme",
+ "priority": "LOW",
+ "status": "TO DO",
+ "category": "HOME",
+ "dueDate": "2021-02-22"
+}
+
+
+
+
+
+###
+//API 6 Deletes a todo from the todo table based on the todo ID
+DELETE http://localhost:3000/todos/6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ###
+# //scenario 1 list of all todos whose status is 'TO DO'
+# GET http://localhost:3000/todos/?status=TO%20DO
+
+# ###
+# //scenario 2 list of all todos whose priority is 'HIGH'
+# GET http://localhost:3000/todos/?priority=HIGH
+
+# ###
+# //scenario 3 list of all todos whose priority is 'HIGH' and status is 'IN PROGRESS'
+# GET http://localhost:3000/todos/?priority=HIGH&status=IN%20PROGRESS
+
+# ###
+# //scenario  list of all todos whose todo contains 'Buy' text
+# GET http://localhost:3000/todos/?search_q=Buy
+
+# ###
+# //list of all todos whose category is 'WORK' and status is 'DONE'
+# GET http://localhost:3000/todos/?category=WORK&status=DONE
+
+# ###
+# //list of all todos whose category is 'HOME'
+# GET http://localhost:3000/todos/?category=HOME
+
+# ###
+# //list of all todos whose category is 'LEARNING' and priority is 'HIGH'
+# GET http://localhost:3000/todos/?category=LEARNING&priority=HIGH
+
+# ###
+# //API 2 specific todo based on the todo ID
+# GET http://localhost:3000/todos/1/
+
+
+# ###
+# //API 6 Deletes a todo from the todo table based on the todo ID
+# DELETE http://localhost:3000/todos/2/
